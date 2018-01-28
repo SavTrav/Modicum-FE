@@ -1,0 +1,25 @@
+// Get everything for user
+
+// /api/v1/videos?userId=ryan123
+
+{
+  "videos": [
+    {
+      "youtubeId": "12345",
+      "tags": [
+        "french"
+      ],
+      "moves": [
+        {
+          "startTime": "123:456",
+          "endTime": "234:456",
+          "name": "cool twirly thing",
+          "tags": [
+            "french", "twirl"
+          ]
+        }
+      ]
+    }
+  ]
+}
+
