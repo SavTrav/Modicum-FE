@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import './App.css'
+import './Modicum.css'
 import YouTube from 'react-youtube'
 import TimeBox from './TimeBox'
 import MoveButton from './MoveButton'
 import MoveNamer from './MoveNamer'
+import MoveList from './MoveList'
 
 var IFRAME_PLAYER
 
@@ -11,7 +12,24 @@ const _onReady = (e) => {
   IFRAME_PLAYER = e.target
 }
 
-class App extends Component {
+const pauseVideo = () => {
+  console.log('calling pause')
+  IFRAME_PLAYER.pauseVideo()
+}
+
+const playMove = (startTime, endTime) => {
+  const duration = Math.round((endTime - startTime) * 1000)
+
+  return () => {
+    IFRAME_PLAYER.pauseVideo()
+    IFRAME_PLAYER.seekTo(startTime)
+    IFRAME_PLAYER.playVideo()
+    setTimeout(pauseVideo, duration)
+  }
+}
+
+
+class Modicum extends Component {
 
   constructor(props) {
     super(props)
@@ -70,10 +88,11 @@ class App extends Component {
 
         <MoveButton firstTimeAdded={this.state.times.length > 0} onClick={this.addTime} />
         <MoveNamer display={this.thereAreTwoTimes()} onSubmit={this.addMove} />
-        <TimeBox times={this.state.times} moves={this.state.moves} />
+        <TimeBox times={this.state.times} />
+        <MoveList moves={this.state.moves} playMove={playMove} />
       </div>
     )
   }
 }
 
-export default App
+export default Modicum
