@@ -7,6 +7,10 @@ import MoveNamer from './MoveNamer'
 
 var IFRAME_PLAYER
 
+const _onReady = (e) => {
+  IFRAME_PLAYER = e.target
+}
+
 class App extends Component {
 
   constructor(props) {
@@ -16,10 +20,6 @@ class App extends Component {
       times: [],
       moves: [],
     }
-  }
-
-  _onReady = (e) => {
-    IFRAME_PLAYER = e.target
   }
 
   addTime = () => {
@@ -64,7 +64,7 @@ class App extends Component {
           <YouTube
             videoId="9hZQzNw5uiA"
             opts={opts}
-            onReady={this._onReady}
+            onReady={_onReady}
           />
         </div>
 
