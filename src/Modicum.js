@@ -5,29 +5,10 @@ import TimeBox from './TimeBox'
 import MoveButton from './MoveButton'
 import MoveNamer from './MoveNamer'
 import MoveList from './MoveList'
+import VideoPlayer from './VideoPlayer'
+import PlayButton from './PlayButton'
 
-var IFRAME_PLAYER
-
-const _onReady = (e) => {
-  IFRAME_PLAYER = e.target
-}
-
-const pauseVideo = () => {
-  console.log('calling pause')
-  IFRAME_PLAYER.pauseVideo()
-}
-
-const playMove = (startTime, endTime) => {
-  const duration = Math.round((endTime - startTime) * 1000)
-
-  return () => {
-    IFRAME_PLAYER.pauseVideo()
-    IFRAME_PLAYER.seekTo(startTime)
-    IFRAME_PLAYER.playVideo()
-    setTimeout(pauseVideo, duration)
-  }
-}
-
+var VIDEO_PLAYER = new VideoPlayer()
 
 class Modicum extends Component {
 
@@ -37,15 +18,16 @@ class Modicum extends Component {
     this.state = {
       times: [],
       moves: [],
+      targetedMove: null,
     }
   }
 
   addTime = () => {
     if (this.addingASecondTime()) {
-      IFRAME_PLAYER.pauseVideo()
+      VIDEO_PLAYER.pauseVideo()
     }
     this.setState({
-      times: [...this.state.times, IFRAME_PLAYER.getCurrentTime()]
+      times: [...this.state.times, VIDEO_PLAYER.getCurrentTime()]
     })
   }
 
@@ -55,12 +37,25 @@ class Modicum extends Component {
     this.setState({moves: [...this.state.moves, move], times: []})
   }
 
+  targetMove = (targetedMove) => {
+    VIDEO_PLAYER.pauseAndSeek(targetedMove.startTime)
+    this.setState({targetedMove})
+  }
+
   addingASecondTime = () => {
     return this.state.times.length === 1
   }
 
   thereAreTwoTimes = () => {
     return this.state.times.length === 2
+  }
+
+  playMove = () => {
+    VIDEO_PLAYER.playMove(this.state.targetedMove.startTime, this.state.targetedMove.endTime)
+  }
+
+  playMoveSlow = () => {
+    VIDEO_PLAYER.playMoveSlow(this.state.targetedMove.startTime, this.state.targetedMove.endTime)
   }
 
   render() {
@@ -82,14 +77,16 @@ class Modicum extends Component {
           <YouTube
             videoId="9hZQzNw5uiA"
             opts={opts}
-            onReady={_onReady}
+            onReady={VIDEO_PLAYER.onReady}
           />
         </div>
 
         <MoveButton firstTimeAdded={this.state.times.length > 0} onClick={this.addTime} />
+        <PlayButton playTargetedMove={this.playMove}>Play</PlayButton>
+        <PlayButton playTargetedMove={this.playMoveSlow}>Play Slow</PlayButton>
         <MoveNamer display={this.thereAreTwoTimes()} onSubmit={this.addMove} />
         <TimeBox times={this.state.times} />
-        <MoveList moves={this.state.moves} playMove={playMove} />
+        <MoveList moves={this.state.moves} targetMove={this.targetMove} />
       </div>
     )
   }

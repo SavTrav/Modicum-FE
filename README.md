@@ -5,11 +5,12 @@ Modicum will help users capture, save, replay, and learn about dance moves they 
 - [x] Create a move with a start and end time
 - [x] Replay a named move from the start until the end
 - [ ] Having a non hard-coded video
-- [ ] Slow motion play
+- [x] Slow motion play
 - [ ] Step slow motion
 - [ ] Storing moves for different videos that pull up the right video
 
 ### Future Features
+- [ ] Variable playback rate for slowmotion
 - [ ] Backend persistence of moves
 - [ ] YouTube Oauth and importing videos from playlist
 - [ ] Keybindings for video player controls
