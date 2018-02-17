@@ -18,7 +18,8 @@ class Modicum extends Component {
     this.state = {
       times: [],
       moves: [],
-      targetedMove: null,
+      targetedMove: {},
+      videoId: ''
     }
   }
 
@@ -33,13 +34,21 @@ class Modicum extends Component {
 
   addMove = (e) => {
     e.preventDefault()
-    const move = {startTime: this.state.times[0], endTime: this.state.times[1], name: e.target.children[0].value}
+    const move = {
+      startTime: this.state.times[0],
+      name: e.target.children[0].value,
+      videoId: this.state.videoId
+    }
+
     this.setState({moves: [...this.state.moves, move], times: []})
   }
 
   targetMove = (targetedMove) => {
-    VIDEO_PLAYER.pauseAndSeek(targetedMove.startTime)
-    this.setState({targetedMove})
+    if (targetedMove.videoId !== this.state.videoId) {
+      this.setState({ videoId: targetedMove.videoId})
+    }
+
+    this.setState({ targetedMove })
   }
 
   addingASecondTime = () => {
@@ -51,11 +60,18 @@ class Modicum extends Component {
   }
 
   playMove = () => {
-    VIDEO_PLAYER.playMove(this.state.targetedMove.startTime, this.state.targetedMove.endTime)
+    VIDEO_PLAYER.playMove(this.state.targetedMove.startTime)
   }
 
   playMoveSlow = () => {
-    VIDEO_PLAYER.playMoveSlow(this.state.targetedMove.startTime, this.state.targetedMove.endTime)
+    VIDEO_PLAYER.playMoveSlow(this.state.targetedMove.startTime)
+  }
+
+  setVideoId = (e) => {
+    e.preventDefault()
+    const id = e.target.children[0].value.split('=')[1]
+
+    this.setState({ videoId: id, targetedMove: {} })
   }
 
   render() {
@@ -75,9 +91,9 @@ class Modicum extends Component {
       <div className="player">
         <div>
           <YouTube
-            videoId="9hZQzNw5uiA"
+            videoId={this.state.videoId}
             opts={opts}
-            onReady={VIDEO_PLAYER.onReady}
+            onReady={  VIDEO_PLAYER.onReady }
           />
         </div>
 
@@ -86,7 +102,14 @@ class Modicum extends Component {
         <PlayButton playTargetedMove={this.playMoveSlow}>Play Slow</PlayButton>
         <MoveNamer display={this.thereAreTwoTimes()} onSubmit={this.addMove} />
         <TimeBox times={this.state.times} />
-        <MoveList moves={this.state.moves} targetMove={this.targetMove} />
+        <MoveList
+          moves={this.state.moves}
+          targetMove={this.targetMove}
+          targetedMove={this.state.targetedMove}
+        />
+        <form onSubmit={this.setVideoId}>
+          <input type='text' placeholder='Video Url' />
+        </form>
       </div>
     )
   }

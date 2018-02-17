@@ -1,12 +1,15 @@
 import React from 'react'
 
-const MoveList = ({ moves, targetMove }) => {
+const MoveList = ({ moves, targetMove, targetedMove }) => {
+  const activeStyle = (name) => {
+    return name === targetedMove.name ? { backgroundColor: 'tomato' } : {}
+  }
   return (
     <div>
       <h1>Moves</h1>
       <ul>
         {moves.map(move =>
-          <li onClick={() => { targetMove(move) }} >{`${move.name}, ${move.startTime}, ${move.endTime}`}</li>
+          <li style={activeStyle(move.name)} onClick={() => { targetMove(move) }} >{`Name: ${move.name}, Start time: ${move.startTime}, Video Id: ${move.videoId}`}</li>
         )}
       </ul>
     </div>

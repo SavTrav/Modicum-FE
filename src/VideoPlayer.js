@@ -14,13 +14,10 @@ class VideoPlayer {
     this.player.pauseVideo()
   }
 
-  playMove = (startTime, endTime) => {
+  playMove = (startTime) => {
     this.setIframePlaybackRate(1)
-    const duration = Math.round((endTime - startTime) * 1000)
-
     this.pauseAndSeek(startTime)
     this.player.playVideo()
-    setTimeout(this.pauseVideo, duration)
   }
 
   pauseAndSeek = (startTime) => {
@@ -35,7 +32,7 @@ class VideoPlayer {
     iframe.contentWindow.postMessage(message, '*')
   }
 
-  playMoveSlow = (startTime, endTime) => {
+  playMoveSlow = (startTime) => {
     this.player.pauseVideo()
     this.player.seekTo(startTime)
     this.player.playVideo()

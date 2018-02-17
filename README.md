@@ -4,12 +4,17 @@ Modicum will help users capture, save, replay, and learn about dance moves they 
 ### Base Features
 - [x] Create a move with a start and end time
 - [x] Replay a named move from the start until the end
-- [ ] Having a non hard-coded video
+- [x] Having a non hard-coded video
 - [x] Slow motion play
-- [ ] Step slow motion
-- [ ] Storing moves for different videos that pull up the right video
+- [x] Storing moves for different videos that pull up the right video
+- [ ] Testing
+- [ ] Video list, on click displays moves from video.
+- [ ] localStorage storage adapter. Swapability required.
+- [ ] Nice UI.
 
 ### Future Features
+- [ ] Publicly available. Hosted
+- [ ] Step slow motion
 - [ ] Variable playback rate for slowmotion
 - [ ] Backend persistence of moves
 - [ ] YouTube Oauth and importing videos from playlist
