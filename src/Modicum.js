@@ -108,7 +108,7 @@ class Modicum extends Component {
           targetedMove={this.state.targetedMove}
         />
         <form onSubmit={this.setVideoId}>
-          <input type='text' placeholder='Video Url' />
+          <input name='videoInput' type='text' placeholder='Video Url' />
         </form>
       </div>
     )

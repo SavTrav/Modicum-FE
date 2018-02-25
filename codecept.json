@@ -1,0 +1,15 @@
+{
+  "tests": "./acceptance/*.test.js",
+  "timeout": 10000,
+  "output": "./output",
+  "helpers": {
+    "Puppeteer": {
+      "url": "http://localhost:3000",
+      "show": true
+    }
+  },
+  "include": {},
+  "bootstrap": false,
+  "mocha": {},
+  "name": "modicum-fe"
+}
