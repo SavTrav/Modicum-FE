@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
-import './Modicum.css'
 import YouTube from 'react-youtube'
+
+import './Modicum.css'
 import TimeBox from './TimeBox'
 import MoveButton from './MoveButton'
 import MoveNamer from './MoveNamer'
 import MoveList from './MoveList'
-import VideoPlayer from './VideoPlayer'
 import PlayButton from './PlayButton'
+
+import VideoPlayer from '../adapters/VideoPlayer'
+import Storage from '../adapters/Storage'
 
 var VIDEO_PLAYER = new VideoPlayer()
 
@@ -21,6 +24,10 @@ class Modicum extends Component {
       targetedMove: {},
       videoId: ''
     }
+  }
+
+  componentDidMount() {
+    
   }
 
   addTime = () => {
