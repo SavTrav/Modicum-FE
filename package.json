@@ -4,11 +4,14 @@
   "private": true,
   "dependencies": {
     "codeceptjs": "^1.1.5",
+    "emotion": "^9.1.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "material-ui": "^0.20.0",
     "puppeteer": "^1.1.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-emotion": "^9.1.1",
     "react-scripts": "1.0.17",
     "react-youtube": "^7.5.0"
   },
