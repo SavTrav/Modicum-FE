@@ -8,8 +8,8 @@ Modicum will help users capture, save, replay, and learn about dance moves they 
 - [x] Slow motion play
 - [x] Storing moves for different videos that pull up the right video
 - [ ] Testing
-- [ ] Video list, on click displays moves from video.
-- [ ] localStorage storage adapter. Swapability required.
+- [x] Video list, on click displays moves from video.
+- [x] localStorage storage adapter. Swapability required.
 - [ ] Nice UI.
 
 ### Future Features
