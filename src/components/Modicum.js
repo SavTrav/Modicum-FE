@@ -20,6 +20,20 @@ import Storage from '../adapters/Storage'
 var VIDEO_PLAYER = new VideoPlayer()
 
 const ButtonContainer = styled('div')`
+  grid-column-start: 2;
+  grid-column-end: 3;
+`
+
+const YouTubeContainer = styled('div')`
+  grid-colun-start: 2;
+  grid-column-end: 3;
+`
+
+const VideoInputContainer = styled('div')`
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
 `
 
 class Modicum extends Component {
@@ -107,13 +121,13 @@ class Modicum extends Component {
       <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
         <AppBar title='Modicum' />
         <AppContainer>
-          <div>
+          <YouTubeContainer>
             <YouTube
               videoId={this.state.videoId}
               opts={opts}
               onReady={  VIDEO_PLAYER.onReady }
             />
-          </div>
+          </YouTubeContainer>
 
           <ButtonContainer>
             <MoveButton firstTimeAdded={this.state.times.length > 0} onClick={this.addTime} />
@@ -127,9 +141,11 @@ class Modicum extends Component {
             targetMove={this.targetMove}
             targetedMove={this.state.targetedMove}
           />
-          <form onSubmit={this.setVideoId}>
-            <input name='videoInput' type='text' placeholder='Video Url' />
-          </form>
+          <VideoInputContainer>
+            <form onSubmit={this.setVideoId}>
+              <input name='videoInput' type='text' placeholder='Video Url' />
+            </form>
+          </VideoInputContainer>
         </AppContainer>
       </MuiThemeProvider>
     )
