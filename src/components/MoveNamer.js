@@ -8,9 +8,8 @@ const MoveNamer = ({ display, onSubmit }) => {
         <input type="submit" />
       </form>
     )
-  } else {
-    return null
   }
+  return null
 }
 
 export default MoveNamer

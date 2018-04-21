@@ -19,32 +19,33 @@ class Storage {
     localStorage.getItem(this.namespace) || localStorage.setItem(this.namespace, defaultSetup)
   }
 
-  addMove(move) {
+  addMove(video, move) {
     const store = this.getStore()
-    const videoIndex = findVideoIndex(store, move.videoId)
+    const videoIndex = findVideoIndex(store, video.id)
 
     if (videoIndex >= 0) {
       store.videos[videoIndex].moves.push({
         startTime: move.startTime,
-        name: move.name
+        name: move.name,
       })
     } else {
-      const formattedMove = {
-        id: move.videoId,
+      const newVideo = {
+        id: video.id,
+        name: video.name,
         moves: [
           {
             startTime: move.startTime,
-            name: move.name
-          }
-        ]
+            name: move.name,
+          },
+        ],
       }
 
-      store.videos.push(formattedMove)
+      store.videos.push(newVideo)
     }
 
     this.setStore(store)
+    return store.videos
   }
-
 }
 
 export default Storage

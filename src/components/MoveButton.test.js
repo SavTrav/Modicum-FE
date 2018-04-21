@@ -9,7 +9,7 @@ describe('MoveButton', () => {
   }
 
   it('renders without crashing', () => {
-    const wrapper = shallow(<MoveButton {...defaultProps}/>)
+    const wrapper = shallow(<MoveButton {...defaultProps} />)
 
     expect(wrapper.length).toEqual(1)
   })
@@ -23,7 +23,7 @@ describe('MoveButton', () => {
   })
 
   it('is red and says End Move if a move is being recorded', () => {
-    const wrapper = shallow(<MoveButton {...defaultProps} firstTimeAdded={true} />)
+    const wrapper = shallow(<MoveButton {...defaultProps} firstTimeAdded />)
     const button = wrapper.find('button').props()
 
     expect(button.style).toEqual({ backgroundColor: 'red' })

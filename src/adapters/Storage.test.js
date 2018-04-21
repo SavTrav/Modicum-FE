@@ -15,15 +15,14 @@ describe('Storage', () => {
     })
 
     it('doesnt overwrite pre-existing', () => {
-      const preExistingData = JSON.stringify( { videos: [ 'meow' ] } )
+      const preExistingData = JSON.stringify({ videos: ['meow'] })
       localStorage.setItem('modicum', preExistingData)
 
       new Storage()
 
-      const expected = JSON.stringify({ videos: [ 'meow' ] })
+      const expected = JSON.stringify({ videos: ['meow'] })
 
       expect(localStorage.getItem('modicum')).toEqual(expected)
-
     })
   })
 
@@ -32,7 +31,7 @@ describe('Storage', () => {
       const move = {
         startTime: '8.382',
         name: 'meow move',
-        videoId: 'meow'
+        videoId: 'meow',
       }
       const storage = new Storage()
 
@@ -47,11 +46,11 @@ describe('Storage', () => {
             moves: [
               {
                 startTime: move.startTime,
-                name: move.name
-              } 
-            ]
-          }
-        ]
+                name: move.name,
+              },
+            ],
+          },
+        ],
       }
 
       expect(output).toEqual(expected)
@@ -61,7 +60,7 @@ describe('Storage', () => {
       const move = {
         startTime: '8.382',
         name: 'meow move',
-        videoId: 'meow'
+        videoId: 'meow',
       }
       const storage = new Storage()
 
@@ -70,7 +69,7 @@ describe('Storage', () => {
       const secondMove = {
         startTime: '3.333',
         name: 'second move',
-        videoId: 'meow'
+        videoId: 'meow',
       }
 
       storage.addMove(secondMove)
@@ -78,7 +77,7 @@ describe('Storage', () => {
       const actual = JSON.parse(localStorage.getItem('modicum'))
       const expected = {
         startTime: secondMove.startTime,
-        name: secondMove.name
+        name: secondMove.name,
       }
 
       expect(actual.videos.length).toEqual(1)
@@ -86,5 +85,4 @@ describe('Storage', () => {
       expect(actual.videos[0].moves[1]).toEqual(expected)
     })
   })
-
 })

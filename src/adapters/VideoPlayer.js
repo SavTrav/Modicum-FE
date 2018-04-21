@@ -5,6 +5,8 @@ class VideoPlayer {
 
   getCurrentTime = () => this.player.getCurrentTime()
 
+  getVideoData = () => this.player.getVideoData()
+
   onReady = (e) => {
     this.player = e.target
   }
