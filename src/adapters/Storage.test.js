@@ -31,18 +31,24 @@ describe('Storage', () => {
       const move = {
         startTime: '8.382',
         name: 'meow move',
-        videoId: 'meow',
       }
+
+      const video = {
+        id: 3,
+        name: 'video name',
+      }
+
       const storage = new Storage()
 
-      storage.addMove(move)
+      storage.addMove(video, move)
 
       const output = JSON.parse(localStorage.getItem('modicum'))
 
       const expected = {
         videos: [
           {
-            id: move.videoId,
+            id: video.id,
+            name: video.name,
             moves: [
               {
                 startTime: move.startTime,
@@ -60,19 +66,23 @@ describe('Storage', () => {
       const move = {
         startTime: '8.382',
         name: 'meow move',
-        videoId: 'meow',
       }
+
+      const video = {
+        id: 3,
+        name: 'video name',
+      }
+
       const storage = new Storage()
 
-      storage.addMove(move)
+      storage.addMove(video, move)
 
       const secondMove = {
         startTime: '3.333',
         name: 'second move',
-        videoId: 'meow',
       }
 
-      storage.addMove(secondMove)
+      storage.addMove(video, secondMove)
 
       const actual = JSON.parse(localStorage.getItem('modicum'))
       const expected = {
