@@ -110,32 +110,34 @@ class Modicum extends Component {
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-        <AppBar title="Modicum" />
-        <AppContainer>
-          <div>
-            <YouTube
-              videoId={this.state.videoId}
-              opts={opts}
-              onReady={VIDEO_PLAYER.onReady}
-            />
-          </div>
+        <div>
+          <AppBar title="Modicum" />
+          <AppContainer>
+            <div>
+              <YouTube
+                videoId={this.state.videoId}
+                opts={opts}
+                onReady={VIDEO_PLAYER.onReady}
+              />
+            </div>
 
-          <ButtonContainer>
-            <MoveButton firstTimeAdded={this.state.times.length > 0} onClick={this.addTime} />
-            <PlayButton playTargetedMove={this.playMove}>Play</PlayButton>
-            <PlayButton playTargetedMove={this.playMoveSlow}>Play Slow</PlayButton>
-          </ButtonContainer>
-          <MoveNamer display={this.thereAreTwoTimes()} onSubmit={this.addMove} />
-          <TimeBox times={this.state.times} />
-          <VideoList
-            videos={this.state.videos}
-            targetMove={this.targetMove}
-            targetedMove={this.state.targetedMove}
-          />
-          <form onSubmit={this.setVideoId}>
-            <input name="videoInput" type="text" placeholder="Video Url" />
-          </form>
-        </AppContainer>
+            <ButtonContainer>
+              <MoveButton firstTimeAdded={this.state.times.length > 0} onClick={this.addTime} />
+              <PlayButton playTargetedMove={this.playMove}>Play</PlayButton>
+              <PlayButton playTargetedMove={this.playMoveSlow}>Play Slow</PlayButton>
+            </ButtonContainer>
+            <MoveNamer display={this.thereAreTwoTimes()} onSubmit={this.addMove} />
+            <TimeBox times={this.state.times} />
+            <VideoList
+              videos={this.state.videos}
+              targetMove={this.targetMove}
+              targetedMove={this.state.targetedMove}
+            />
+            <form onSubmit={this.setVideoId}>
+              <input name="videoInput" type="text" placeholder="Video Url" />
+            </form>
+          </AppContainer>
+        </div>
       </MuiThemeProvider>
     )
   }
