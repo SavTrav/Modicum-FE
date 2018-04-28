@@ -40,19 +40,3 @@ VideoList.propTypes = {
 }
 
 export default VideoList
-// <li key={`${video.name}${idx}`} style={activeStyle(video.name)} onClick={() => { targetMove(video) }} >{`Name: ${video.name}, Start time: ${video.startTime}, Video Id: ${video.videoId}`}</li>
-
-// {
-//   videos: [
-//     {
-//       name: 'Terry, King of Dance'
-//       id: abc123,
-//       moves: [
-//         {
-//           startTime: 12345,
-//           name: He spin real good
-//         }
-//       ]
-//     }
-//   ]
-// }

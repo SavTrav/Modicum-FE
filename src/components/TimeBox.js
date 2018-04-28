@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const TimeBox = ({ times }) => (
   <div>
@@ -6,5 +7,9 @@ const TimeBox = ({ times }) => (
     <div>{times.map(time => <p>{time}</p>)}</div>
   </div>
 )
+
+TimeBox.propTypes = {
+  times: PropTypes.array
+}
 
 export default TimeBox
