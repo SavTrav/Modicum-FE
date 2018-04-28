@@ -17,6 +17,8 @@ const VideoList = ({ videos, targetMove, targetedMove }) => {
               {
                 video.moves.map((move, idx) => (
                   <li
+                    style={activeStyle(move.name)}
+                    className='moves'
                     key={`${move.name}${idx}`}
                     onClick={() => { targetMove(video.id, move) }}>
                     {`Name: ${move.name} - startTime: ${move.startTime}`}
@@ -32,7 +34,7 @@ const VideoList = ({ videos, targetMove, targetedMove }) => {
 }
 
 VideoList.propTypes = {
-  moves: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  videos: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   targetMove: PropTypes.func.isRequired,
   targetedMove: PropTypes.shape().isRequired,
 }
